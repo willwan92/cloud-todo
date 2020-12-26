@@ -1,2 +1,4 @@
 <!--pages/index/index.wxml-->
 <text>pages/index/index.wxml</text>
+<van-button type="default">默认按钮</van-button>
+<van-button type="primary">主要按钮</van-button>
