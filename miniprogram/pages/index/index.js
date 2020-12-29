@@ -1,66 +1,49 @@
 // pages/index/index.js
+const db = wx.cloud.database()
+const todos = db.collection('todos')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    todos: [],
+    page: 0,
+    pageSize: 20,
+    isAll: false //是否已经加载完所有的数据
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getTodos();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onPullDownRefresh() {
+    this
+      .getTodos()
+      .then(() => {
+        wx.stopPullDownRefresh()
+      })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  onReachBottom() {
+    !this.data.isAll && this.getTodos();
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  getTodos() {
+    wx.showLoading({
+      title: '努力加载中...',
+    })
+    const skip = this.data.page * this.data.page
+    return todos
+      .skip(skip)
+      .get()
+      .then(res => {
+        wx.hideLoading()
+        this.setData({
+          page: this.data.page += 1,
+          todos: [...this.data.todos].concat(res.data),
+          isAll: res.data.length < this.data.pageSize
+        })
+      })
   }
 })
