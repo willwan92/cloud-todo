@@ -1,4 +1,6 @@
 <!--pages/index/index.wxml-->
 <van-cell-group>
-  <van-cell wx:for="{{todos}}" title="{{item.title}}" />
+  <navigator  wx:for="{{todos}}" url="../todoDetail/todoDetail?id={{item._id}}">
+    <van-cell title="{{item.title}}" />
+  </navigator>
 </van-cell-group>

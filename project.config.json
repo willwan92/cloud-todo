@@ -19,7 +19,7 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
     "useApiHook": true,
     "babelSetting": {
       "ignore": [],
@@ -30,9 +30,12 @@
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true
+    "minifyWXSS": true,
+    "bundle": false,
+    "useApiHostProcess": true
   },
   "appid": "wxa35caa5eb439dc01",
   "projectname": "cloud-todo",
@@ -60,6 +63,13 @@
         {
           "name": "pages/addTodo/addTodo",
           "pathName": "pages/addTodo/addTodo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/todoDetail/todoDetail",
+          "pathName": "pages/todoDetail/todoDetail",
+          "query": "id=73f70d5c5feae0a300bff065631e7483",
           "scene": null
         }
       ]
