@@ -1,5 +1,7 @@
 <!--pages/addTodo/addTodo.wxml-->
 <form bindsubmit="onSubmit">
-  <input name="title"></input>
+  <input name="title" />
+  <image wx:if="{{image}}" src="{{image}}"></image>
+  <button bindtap="chooseImage">选择图片</button>
   <button form-type="submit">添加</button>
 </form>
