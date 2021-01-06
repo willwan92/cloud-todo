@@ -22,9 +22,10 @@ Page({
       .doc(id)
       .get()
       .then(res => {
-        console.log(res)
+        const task = res.data
+        task.location && (task.location = JSON.parse(task.location))
         this.setData({
-          task: res.data
+          task: task
         })
       })
   }

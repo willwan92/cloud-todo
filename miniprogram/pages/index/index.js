@@ -20,8 +20,7 @@ Page({
     this.getTodos();
   },
   onPullDownRefresh() {
-    this
-      .getTodos()
+    !this.data.isAll && this.getTodos()
       .then(() => {
         wx.stopPullDownRefresh()
       })

@@ -17,5 +17,10 @@
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-button": "@vant/weapp/button/index"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于记录任务位置"
+    }
   }
 }

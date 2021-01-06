@@ -2,6 +2,8 @@
 <form bindsubmit="onSubmit">
   <input name="title" />
   <image wx:if="{{image}}" src="{{image}}"></image>
+  <van-cell wx:if="{{location}}" title="位置" value="{{location.name}}"/>
   <button bindtap="chooseImage">选择图片</button>
+  <button bindtap="chooseLocation">选择位置</button>
   <button form-type="submit">添加</button>
 </form>

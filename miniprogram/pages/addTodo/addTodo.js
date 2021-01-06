@@ -3,7 +3,32 @@ const db = wx.cloud.database()
 const todos = db.collection('todos')
 Page({
   data: {
-    image: ''
+    image: '',
+    location: null
+  },
+  handleChooseLocationTap() {
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userLocation']) {
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success: () => {
+              this.chooseLocation()
+            }
+          })
+        } else {
+          this.chooseLocation()
+        }
+      }
+    })
+  },
+  chooseLocation() {
+    wx.chooseLocation({
+      success: (res) => {
+        const { address, name, latitude, longitude } = res;
+        this.setData({ location: { address, name, latitude, longitude } });
+      }
+    })
   },
   chooseImage() {
     wx.chooseImage({
@@ -50,16 +75,16 @@ Page({
     wx.showLoading({
       title: '正在添加...',
     })
-
+    const params = { ...e.detail.value }
+    params.location = JSON.stringify(this.data.location)
     if (this.data.image) {
       this.uploadImg()
         .then(res => {
-          const params = { ...e.detail.value }
           params.image = res
           this.addTodo(params)
         })
     } else {
-      this.addTodo(e.detail.value)
+      this.addTodo(params)
     }
   }
 })
