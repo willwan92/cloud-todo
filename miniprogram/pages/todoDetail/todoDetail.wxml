@@ -1,4 +1,9 @@
 <!--pages/todoDetail/todoDetail.wxml-->
 <van-cell title="{{task.title}}" value="{{task.status === 'in-progress' ? '进行中' : '已完成'}}"/>
-<van-cell wx:if="{{task.location}}" title="位置" value="{{task.location.address}}"/>
+<van-cell
+  wx:if="{{task.location}}"
+  title="{{task.location.name}}"
+  value="{{task.location.address}}"
+  bind:click="handleAddressClick"
+  icon="location-o"/>
 <image wx:if="{{task.image}}" src="{{task.image}}"></image>

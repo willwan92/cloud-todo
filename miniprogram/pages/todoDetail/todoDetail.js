@@ -17,6 +17,18 @@ Page({
     this.getTodoDetail(options.id)
   },
 
+  handleAddressClick(e) {
+    const location = this.data.task.location
+    wx.openLocation({
+      address: location.address,
+      latitude: location.latitude,
+      longitude: location.longitude,
+      fail: (err) => {
+        console.log(err);
+      }
+    })
+  },
+
   getTodoDetail(id) {
     todos
       .doc(id)
